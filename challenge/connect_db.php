@@ -17,6 +17,7 @@ if($connect->connect_error) {
 
 }
 
+// create a table row including input fields
 if(isset($_POST["submit"])){
     $dish_id = $_POST["dish_id"]; 
     $image = $_POST["image"];
@@ -52,4 +53,42 @@ if(isset($_POST["submit"])){
         <input type="submit"  name="submit" value= "submit">
     </form>
     </body>
+
+    <!-- FETCH THE DATA -->
+    <?php
+    // saving query in variable
+    $sql = "SELECT * FROM dishes"; 
+    // function that takes two arguments
+    $result = mysqli_query($connect, $sql);
+
+    // now onto fetching
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    // echo "<td>" .$rows[0]['name' ]." ".$rows[0]['meal_description' ]. "</td>";
+    
+    foreach ($rows as $row) {
+        echo  "<p>" .$row['name']." ".$row['meal_description']."</p>";
+    }
+
+
+    // DELETE OPTION
+
+    $i=0;
+    while($i<count($rows)){
+        echo  "<p>" .$rows[$i]['name']." ".$rows[$i]['meal_description' ]. " <a href='connect_db.php?id=" .$rows[$i]['dish_id']."'>delete</a></p>" ;
+
+        $i++;
+    }
+
+    if(isset($_GET["dish_id"])){
+        $id = $_GET[ "dish_id" ]; // graphing the id value that is in the url
+    
+        $sql = "DELETE FROM dishes WHERE dish_id = $id";
+        if(mysqli_query($connect, $sql) == true){
+            echo "Record deleted <br>
+            <a href='connect_db.php'>Home</a>";
+        }
+    }
+    ?>
+    
 </html >
