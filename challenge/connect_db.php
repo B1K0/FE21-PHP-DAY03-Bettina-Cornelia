@@ -80,8 +80,8 @@ if(isset($_POST["submit"])){
         $i++;
     }
 
-    if(isset($_GET["dish_id"])){
-        $id = $_GET[ "dish_id" ]; // graphing the id value that is in the url
+    if(isset($_GET["id"])){
+        $id = $_GET[ "id" ]; // grabbing the id value that is in the url
     
         $sql = "DELETE FROM dishes WHERE dish_id = $id";
         if(mysqli_query($connect, $sql) == true){
