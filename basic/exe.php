@@ -9,7 +9,7 @@
 <body>
     <?php
     // EXERCISE 1 - FOR LOOP
-        for($i=0; $i<50; $i++) {
+        for($i=0; $i<10; $i++) {
             echo "My name is Benelia.<br>";
         };
 
@@ -47,10 +47,15 @@
     // take a look at our awesome array:
     var_dump($a);
     
-    function printMax(){
-        $a=max($a);
-        echo "The largest number of this array is" .$a. "<br>";
+    function printMax($dummyArray){
+        $dummyArray=max($dummyArray);
+        echo "The largest number of this array is " .$dummyArray. "<br>";
     }
+
+    // Bettinas version that is much more splendid (and cleaner!) as mine:
+    // function printMax($c) {
+    //     echo (max($c));
+    // }
 
     printMax($a);
 
